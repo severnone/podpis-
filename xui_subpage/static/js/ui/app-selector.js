@@ -4,7 +4,7 @@ function updateAppSelector(apps) {
     if (!appSelector) return;
 
     appSelector.innerHTML = apps.map((app, index) => `
-        <button class="app-option ${index === 0 ? 'active' : ''}" data-app-index="${index}">
+        <button class="app-button app-option ${index === 0 ? 'active' : ''}" data-app-index="${index}">
             ${app.displayName || app.name}
         </button>
     `).join('');
@@ -16,6 +16,11 @@ function updateAppSelector(apps) {
             window.selectApp(apps[index]);
         });
     });
+    
+    // Запускаем анимацию кнопок
+    if (window.animateAppButtons) {
+        window.animateAppButtons();
+    }
 }
 
 function selectApp(app) {

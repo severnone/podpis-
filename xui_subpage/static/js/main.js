@@ -56,6 +56,11 @@ async function loadAppSettings() {
       window.initHolidays(appSettings);
     }
 
+    // Инициализируем анимации появления
+    if (window.initAnimations) {
+      window.initAnimations();
+    }
+
   } catch (err) {
     window.setCurrentLanguage(window.detectUserLanguage());
     await window.loadAppTexts(window.getCurrentLanguage());
