@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/qr-scanner.css?v={{VERSION}}">
     <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/holidays.css?v={{VERSION}}">
     <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/animations.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/skeleton.css?v={{VERSION}}">
     <link rel="stylesheet" href="{{BASE_PATH}}static/css/styles.css?v={{VERSION}}">
 </head>
 <body>
@@ -55,7 +56,52 @@
             </div>
         </div>
 
-        <div class="subscription-card">
+        <!-- Скелетон-загрузка (показывается пока грузятся данные) -->
+        <div class="skeleton-container" id="skeleton-container">
+            <!-- Скелетон карточки -->
+            <div class="skeleton-card">
+                <div class="skeleton-card-header">
+                    <div class="skeleton skeleton-avatar"></div>
+                    <div class="skeleton-text-group">
+                        <div class="skeleton skeleton-text skeleton-text-medium"></div>
+                        <div class="skeleton skeleton-text skeleton-text-short"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Скелетон кнопок -->
+            <div class="skeleton-buttons">
+                <div class="skeleton skeleton-button"></div>
+                <div class="skeleton skeleton-button"></div>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            
+            <!-- Скелетон шагов -->
+            <div class="skeleton-step">
+                <div class="skeleton skeleton-step-icon"></div>
+                <div class="skeleton-step-content">
+                    <div class="skeleton skeleton-step-title"></div>
+                    <div class="skeleton skeleton-step-desc"></div>
+                    <div class="skeleton skeleton-step-btn"></div>
+                </div>
+            </div>
+            <div class="skeleton-step">
+                <div class="skeleton skeleton-step-icon"></div>
+                <div class="skeleton-step-content">
+                    <div class="skeleton skeleton-step-title"></div>
+                    <div class="skeleton skeleton-step-desc"></div>
+                </div>
+            </div>
+            <div class="skeleton-step">
+                <div class="skeleton skeleton-step-icon"></div>
+                <div class="skeleton-step-content">
+                    <div class="skeleton skeleton-step-title"></div>
+                    <div class="skeleton skeleton-step-desc"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subscription-card" id="subscription-card" style="display: none;">
             <div class="subscription-status" id="subscription-status">
                 <i class="fas fa-check"></i>
             </div>
@@ -83,7 +129,7 @@
             </div>
         </div>
 
-        <div class="installation-section">
+        <div class="installation-section" id="installation-section" style="display: none;">
             <div class="installation-header">
                 <h2 class="section-title"></h2>
                 <div class="platform-selector">

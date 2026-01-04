@@ -142,8 +142,17 @@ async function loadSubscriptionData() {
       platformSelect.value = detectedOS;
     }
 
+    // Скрываем скелетон и показываем контент
+    if (window.hideSkeleton) {
+      window.hideSkeleton();
+    }
+
   } catch (error) {
     console.error('Subscription error:', error);
+    // Всё равно скрываем скелетон при ошибке
+    if (window.hideSkeleton) {
+      window.hideSkeleton();
+    }
     throw error;
   }
 }
