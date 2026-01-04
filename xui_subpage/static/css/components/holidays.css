@@ -1,0 +1,553 @@
+/* ========================================
+   🎄 ПРАЗДНИЧНЫЕ ТЕМЫ
+   ======================================== */
+
+/* === БАЗОВЫЕ СТИЛИ ДЛЯ ЭФФЕКТОВ === */
+
+.holiday-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.holiday-particle {
+    position: absolute;
+    pointer-events: none;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* Кнопка отключения праздничной темы */
+.holiday-disable-btn {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.holiday-disable-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+}
+
+.holiday-disable-btn i {
+    font-size: 10px;
+}
+
+/* Поздравительный баннер */
+.holiday-greeting {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 32px 48px;
+    text-align: center;
+    z-index: 10000;
+    opacity: 0;
+    animation: greetingAppear 0.5s ease 0.5s forwards;
+}
+
+.holiday-greeting.hidden {
+    display: none;
+}
+
+.holiday-greeting-emoji {
+    font-size: 64px;
+    margin-bottom: 16px;
+    animation: greetingBounce 1s ease infinite;
+}
+
+.holiday-greeting-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.holiday-greeting-close {
+    margin-top: 20px;
+    background: var(--accent-gradient, linear-gradient(135deg, #00b4d8, #0096c7));
+    border: none;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.holiday-greeting-close:hover {
+    transform: scale(1.05);
+}
+
+@keyframes greetingAppear {
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes greetingBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ========================================
+   🎄 НОВЫЙ ГОД (newyear)
+   ======================================== */
+
+body.holiday-newyear {
+    --holiday-primary: #1a4a3a;
+    --holiday-secondary: #2d5a4a;
+    --holiday-accent: #d4af37;
+}
+
+body.holiday-newyear .header-logo {
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.3));
+}
+
+body.holiday-newyear .subscription-card {
+    background: linear-gradient(160deg, rgba(26, 74, 58, 0.2), rgba(45, 90, 74, 0.15));
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+body.holiday-newyear .subscription-status {
+    background: linear-gradient(135deg, #1a4a3a, #2d5a4a);
+}
+
+body.holiday-newyear .btn-primary {
+    background: linear-gradient(135deg, #1a4a3a, #0f3028);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #fff;
+}
+
+body.holiday-newyear .btn-primary:hover {
+    background: linear-gradient(135deg, #2d5a4a, #1a4a3a);
+    color: #fff;
+}
+
+body.holiday-newyear .btn-primary i {
+    color: rgba(212, 175, 55, 0.8);
+}
+
+body.holiday-newyear .app-button.active {
+    background: rgba(26, 74, 58, 0.4);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* Снежинки */
+.snowflake {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    top: -50px;
+    animation-name: snowfall;
+    /* duration и delay устанавливаются в JS */
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+/* ========================================
+   🪖 ДЕНЬ ЗАЩИТНИКА (defender)
+   ======================================== */
+
+body.holiday-defender {
+    --holiday-primary: #4a5d23;
+    --holiday-secondary: #8b7355;
+    --holiday-accent: #cd7f32;
+}
+
+body.holiday-defender .subscription-card {
+    border-color: rgba(74, 93, 35, 0.4);
+}
+
+body.holiday-defender .btn-primary {
+    background: linear-gradient(135deg, #4a5d23, #3d4d1c);
+}
+
+body.holiday-defender .subscription-status {
+    background: linear-gradient(135deg, #4a5d23, #cd7f32);
+}
+
+/* ========================================
+   💐 ЖЕНСКИЙ ДЕНЬ (women)
+   ======================================== */
+
+body.holiday-women {
+    --holiday-primary: #ff69b4;
+    --holiday-secondary: #da70d6;
+    --holiday-accent: #ff1493;
+}
+
+body.holiday-women .subscription-card {
+    background: linear-gradient(160deg, rgba(255, 105, 180, 0.15), rgba(218, 112, 214, 0.1));
+    border-color: rgba(255, 105, 180, 0.3);
+}
+
+body.holiday-women .btn-primary {
+    background: linear-gradient(135deg, #ff69b4, #da70d6);
+}
+
+body.holiday-women .subscription-status {
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+/* Лепестки */
+.petal {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    border-radius: 50% 0 50% 50%;
+    top: -30px;
+    animation-name: petalFall;
+    /* duration и delay устанавливаются в JS */
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(calc(100vh + 50px)) rotate(360deg) translateX(80px);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   🎖️ ДЕНЬ ПОБЕДЫ (victory)
+   ======================================== */
+
+body.holiday-victory {
+    --holiday-primary: #ff6600;
+    --holiday-secondary: #000000;
+    --holiday-accent: #ffd700;
+}
+
+body.holiday-victory .subscription-card {
+    border-color: rgba(255, 102, 0, 0.4);
+    box-shadow: 0 4px 20px rgba(255, 102, 0, 0.2);
+}
+
+body.holiday-victory .btn-primary {
+    background: linear-gradient(135deg, #ff6600, #cc5200);
+}
+
+body.holiday-victory .subscription-status {
+    background: linear-gradient(135deg, #ff6600, #ffd700);
+}
+
+/* Георгиевская лента - полоски */
+body.holiday-victory::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        #ff6600 0px,
+        #ff6600 20px,
+        #000 20px,
+        #000 40px
+    );
+    z-index: 9999;
+}
+
+/* ========================================
+   🇷🇺 ДЕНЬ РОССИИ (russia)
+   ======================================== */
+
+body.holiday-russia {
+    --holiday-primary: #0039a6;
+    --holiday-secondary: #d52b1e;
+    --holiday-accent: #ffffff;
+}
+
+body.holiday-russia .subscription-card {
+    border-image: linear-gradient(180deg, #fff, #0039a6, #d52b1e) 1;
+}
+
+body.holiday-russia .btn-primary {
+    background: linear-gradient(135deg, #0039a6, #002776);
+}
+
+body.holiday-russia .subscription-status {
+    background: linear-gradient(180deg, #fff 33%, #0039a6 33%, #0039a6 66%, #d52b1e 66%);
+}
+
+body.holiday-russia .subscription-status i {
+    color: #0039a6;
+}
+
+/* ========================================
+   🧡 ДЕНЬ ЕДИНСТВА (unity)
+   ======================================== */
+
+body.holiday-unity {
+    --holiday-primary: #ff8c00;
+    --holiday-secondary: #8b0000;
+    --holiday-accent: #ffd700;
+}
+
+body.holiday-unity .btn-primary {
+    background: linear-gradient(135deg, #ff8c00, #cc7000);
+}
+
+/* ========================================
+   🎃 ХЭЛЛОУИН (halloween)
+   ======================================== */
+
+body.holiday-halloween {
+    --bg-primary: #1a0a2e;
+    --holiday-primary: #ff6600;
+    --holiday-secondary: #800080;
+    --holiday-accent: #00ff00;
+}
+
+body.holiday-halloween .subscription-card {
+    background: linear-gradient(160deg, rgba(255, 102, 0, 0.2), rgba(128, 0, 128, 0.15));
+    border-color: rgba(255, 102, 0, 0.4);
+}
+
+body.holiday-halloween .btn-primary {
+    background: linear-gradient(135deg, #ff6600, #cc5200);
+}
+
+body.holiday-halloween .subscription-status {
+    background: linear-gradient(135deg, #ff6600, #800080);
+}
+
+body.holiday-halloween .header h1 {
+    text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+}
+
+/* Летучие мыши */
+.bat {
+    font-size: 20px;
+    animation: batFly 8s ease-in-out infinite;
+}
+
+@keyframes batFly {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(100px, -50px) rotate(15deg);
+    }
+    50% {
+        transform: translate(200px, 0) rotate(-10deg);
+    }
+    75% {
+        transform: translate(100px, 50px) rotate(5deg);
+    }
+}
+
+/* ========================================
+   ❤️ ДЕНЬ ВАЛЕНТИНА (valentine)
+   ======================================== */
+
+body.holiday-valentine {
+    --holiday-primary: #e91e63;
+    --holiday-secondary: #ff4081;
+    --holiday-accent: #f48fb1;
+}
+
+body.holiday-valentine .subscription-card {
+    background: linear-gradient(160deg, rgba(233, 30, 99, 0.15), rgba(255, 64, 129, 0.1));
+    border-color: rgba(233, 30, 99, 0.3);
+}
+
+body.holiday-valentine .btn-primary {
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+}
+
+body.holiday-valentine .subscription-status {
+    background: linear-gradient(135deg, #e91e63, #ff4081);
+}
+
+/* Сердечки */
+.heart {
+    color: #e91e63;
+    text-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+    bottom: -30px;
+    animation-name: heartFloat;
+    /* duration и delay устанавливаются в JS */
+}
+
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(-10vh) scale(1) rotate(15deg);
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(calc(-100vh - 50px)) scale(0.8) rotate(-15deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   🥚 ПАСХА (easter)
+   ======================================== */
+
+body.holiday-easter {
+    --holiday-primary: #ffd700;
+    --holiday-secondary: #98fb98;
+    --holiday-accent: #87ceeb;
+}
+
+body.holiday-easter .subscription-card {
+    background: linear-gradient(160deg, rgba(255, 215, 0, 0.1), rgba(152, 251, 152, 0.1));
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+body.holiday-easter .btn-primary {
+    background: linear-gradient(135deg, #ffd700, #daa520);
+    color: #000;
+}
+
+body.holiday-easter .subscription-status {
+    background: linear-gradient(135deg, #ffd700, #98fb98);
+}
+
+/* ========================================
+   🎆 ФЕЙЕРВЕРКИ (fireworks)
+   ======================================== */
+
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px currentColor;
+    animation: fireworkExplode 1.2s ease-out forwards;
+}
+
+@keyframes fireworkExplode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--fx, 50px), var(--fy, -50px)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   🎊 КОНФЕТТИ (confetti)
+   ======================================== */
+
+.confetti {
+    top: -20px;
+    animation-name: confettiFall;
+    /* duration и delay устанавливаются в JS */
+}
+
+.confetti:nth-child(odd) {
+    background: #ff6b6b;
+}
+
+.confetti:nth-child(even) {
+    background: #4ecdc4;
+}
+
+.confetti:nth-child(3n) {
+    background: #ffe66d;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(calc(100vh + 50px)) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   📱 АДАПТИВ
+   ======================================== */
+
+@media (max-width: 480px) {
+    .holiday-greeting {
+        padding: 24px 32px;
+        margin: 0 16px;
+        width: calc(100% - 32px);
+    }
+    
+    .holiday-greeting-emoji {
+        font-size: 48px;
+    }
+    
+    .holiday-greeting-text {
+        font-size: 20px;
+    }
+    
+    .holiday-disable-btn {
+        bottom: 12px;
+        left: 12px;
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+}
+
+/* Уменьшаем эффекты на слабых устройствах */
+body.mobile-lite .holiday-effects .holiday-particle {
+    animation-duration: 10s !important;
+}
+
+body.mobile-lite .holiday-effects .holiday-particle:nth-child(n+10) {
+    display: none;
+}
+
+/* Отключаем эффекты при prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .holiday-effects {
+        display: none !important;
+    }
+    
+    .holiday-greeting {
+        animation: none;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}

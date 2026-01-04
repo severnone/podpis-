@@ -1,0 +1,142 @@
+.vless-selector {
+    position: relative;
+    flex-shrink: 0;
+    z-index: 60;
+}
+
+.vless-selector[hidden] {
+    display: none;
+}
+
+.vless-trigger {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    height: 28px;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+    width: 28px;
+}
+
+.vless-trigger:hover,
+.vless-trigger:focus {
+    color: var(--accent-primary);
+    outline: none;
+}
+
+.vless-selector.open .vless-trigger {
+    color: var(--accent-primary);
+}
+
+.vless-chevron {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+    transform: translateX(-7px);
+    transform-origin: center;
+}
+
+.vless-selector.open .vless-chevron {
+    transform: translateX(-7px) rotate(180deg);
+}
+
+.vless-dropdown-menu {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    max-height: 260px;
+    min-width: 200px;
+    max-width: var(--vless-menu-max-width, 260px);
+    opacity: 0;
+    overflow-y: auto;
+    padding: 6px 0;
+    pointer-events: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top left;
+    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+    visibility: hidden;
+    z-index: 70;
+}
+
+.vless-dropdown-menu.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+}
+
+.vless-option {
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 16px;
+    transition: background 0.15s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vless-option:hover {
+    background: var(--bg-card-hover);
+}
+
+.vless-option:active {
+    background: var(--accent-primary);
+    color: var(--text-on-accent);
+}
+
+.vless-empty {
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 8px 16px;
+    text-align: center;
+}
+
+.vless-option-protocol {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.12);
+    border-radius: 999px;
+    padding: 4px 8px;
+    text-transform: uppercase;
+}
+
+.vless-option-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+@media (max-width: 480px) {
+    .vless-dropdown-menu {
+        min-width: 180px;
+        left: auto;
+        right: 0;
+        top: calc(100% + 8px);
+        transform: translateY(-8px) scale(0.97);
+    }
+
+    .vless-dropdown-menu.show {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tg-webapp .vless-dropdown-menu {
+    left: 0 !important;
+    right: auto !important;
+}
+
+

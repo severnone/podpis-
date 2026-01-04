@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{PROJECT_NAME}}</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script src="{{BASE_PATH}}static/js/auth.js?v={{VERSION}}"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/base/themes.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/platform-selector.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/share-menu.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/vless-selector.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/app-selector.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/installation-steps.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/qr-scanner.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/components/holidays.css?v={{VERSION}}">
+    <link rel="stylesheet" href="{{BASE_PATH}}static/css/styles.css?v={{VERSION}}">
+</head>
+<body>
+
+    <div class="page-loader" id="page-loader">
+        <div class="loader-water-effect"></div>
+        <div class="loader-content">
+            <div class="loader-logo">{{PROJECT_NAME}}</div>
+            <div class="loader-spinner">
+                <img data-auto-load="{{BASE_PATH}}static/img/icon" alt="Loading" class="loader-logo-image">
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        
+        <div class="header">
+            <h1>
+                <img data-auto-load="{{BASE_PATH}}static/img/icon" alt="Logo" class="header-logo">
+                <span class="title-text">{{PROJECT_NAME}}</span>
+            </h1>
+            <div class="header-actions">
+                <button class="header-icon" id="get-link-btn">
+                    <i class="fas fa-link"></i>
+                </button>
+                <button class="header-icon" id="share-btn">
+                    <i class="fas fa-share-from-square"></i>
+                </button>
+                <a href="javascript:void(0)" class="header-icon support-chat-link" data-support-url="{{SUPPORT_CHAT_URL}}">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="subscription-card">
+            <div class="subscription-status" id="subscription-status">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="subscription-info">
+                <div class="subscription-keyrow">
+                    <div class="vless-selector" id="vless-selector" hidden>
+                        <button class="vless-trigger" id="vless-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-chevron-down vless-chevron" id="vless-chevron"></i>
+                        </button>
+                        <div class="vless-dropdown-menu" id="vless-menu" role="listbox"></div>
+                    </div>
+                    <div class="subscription-keyname" id="subscription-keyname"></div>
+                </div>
+                <div class="subscription-expiry" id="subscription-expiry"></div>
+            </div>
+            <button class="qr-toggle-btn" id="qr-toggle-btn" type="button" title="Показать QR код">
+                <i class="fas fa-qrcode"></i>
+            </button>
+            <div class="qr-code-wrapper" id="qr-code-wrapper" style="display: none;">
+                <div class="qr-code-hint" data-i18n="qr_hint">
+                </div>
+                <div class="qr-code-container" id="qr-code-container">
+                    <img id="qr-code-image" src="" alt="QR Code" class="qr-code-image">
+                </div>
+            </div>
+        </div>
+
+        <div class="installation-section">
+            <div class="installation-header">
+                <h2 class="section-title"></h2>
+                <div class="platform-selector">
+                    <div class="platform-dropdown-custom" id="platform-dropdown">
+                        <div class="platform-selected" id="platform-selected">
+                            <i class="platform-icon fab fa-apple" id="platform-icon"></i>
+                            <span class="platform-name" id="platform-name"></span>
+                            <i class="platform-chevron fas fa-chevron-down" id="platform-chevron"></i>
+                        </div>
+                        <div class="platform-dropdown-menu" id="platform-menu">
+                            <div class="platform-option" data-value="ios">
+                                <i class="fab fa-apple"></i>
+                                <span></span>
+                            </div>
+                            <div class="platform-option" data-value="android">
+                                <i class="fab fa-android"></i>
+                                <span></span>
+                            </div>
+                            <div class="platform-option" data-value="windows">
+                                <i class="fab fa-windows"></i>
+                                <span></span>
+                            </div>
+                            <div class="platform-option" data-value="macos">
+                                <i class="fab fa-apple"></i>
+                                <span></span>
+                            </div>
+                            <div class="platform-option" data-value="linux">
+                                <i class="fab fa-linux"></i>
+                                <span></span>
+                            </div>
+                            <div class="platform-option" data-value="appletv">
+                                <i class="fas fa-tv"></i>
+                                <span></span>
+                            </div>
+                            <div class="platform-option" data-value="androidtv">
+                                <i class="fas fa-tv"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="app-selector" class="app-selector">
+            </div>
+
+            <div class="steps-container" id="steps-container">
+            </div>
+
+        </div>
+
+        <div class="language-selector">
+            <div class="language-toggle" data-active="ru">
+                <div class="language-toggle-slider"></div>
+                <div class="language-option active" data-lang="ru">РУ</div>
+                <div class="language-option" data-lang="en">EN</div>
+            </div>
+        </div>
+        
+        <div style="display: none;">
+            <div id="key-value"></div>
+            <img id="qr-image" src="" alt="QR Code">
+        </div>
+        
+    </div>
+
+    <div id="tv-qr-modal" class="tv-qr-modal hidden">
+        <div class="tv-qr-modal-content">
+            <div class="tv-qr-modal-header">
+                <h3 id="tv-qr-modal-title"></h3>
+                <button class="tv-qr-modal-close" id="tv-qr-modal-close" type="button">
+                    &times;
+                </button>
+            </div>
+            
+            <div class="tv-qr-modal-body">
+                
+                <div class="tv-tabs">
+                    <button class="tv-tab active" data-tab="qr" id="tv-tab-qr" type="button">
+                        <span class="tv-tab-text" id="tv-tab-qr-text">QR-код</span>
+                    </button>
+                    <button class="tv-tab" data-tab="code" id="tv-tab-code" type="button">
+                        <span class="tv-tab-text" id="tv-tab-code-text">Ввод кода</span>
+                    </button>
+                </div>
+
+                
+                <div class="tv-tab-content active" id="tv-content-qr">
+                    <div class="tv-qr-scanner-section">
+                        <div id="tv-qr-camera-container" class="tv-qr-camera-container">
+                            <div class="tv-qr-camera-instructions" id="tv-qr-camera-instructions">
+                            </div>
+                            <div class="tv-qr-video-wrapper">
+                                <video id="tv-qr-camera-video" class="tv-qr-camera-video" autoplay playsinline muted></video>
+                                <canvas id="tv-qr-scanner-canvas" class="tv-qr-scanner-canvas"></canvas>
+                            </div>
+                            <div class="tv-qr-zoom-controls" id="tv-qr-zoom-controls">
+                                <label class="zoom-label">Zoom:</label>
+                                <input type="range" id="tv-qr-zoom-slider" class="zoom-slider" min="1" max="3" step="1" value="1">
+                                <span class="zoom-value" id="tv-qr-zoom-value">1x</span>
+                            </div>
+                        </div>
+                        <div class="tv-qr-status" id="tv-qr-status"></div>
+                    </div>
+                </div>
+
+                
+                <div class="tv-tab-content" id="tv-content-code">
+                    <div class="tv-code-input-section">
+                        <p class="tv-code-instructions" id="tv-code-instructions">
+                            Введите 5-значный код с экрана TV
+                        </p>
+                        <div class="tv-code-inputs">
+                            <input type="text" class="tv-code-digit" maxlength="1" inputmode="text" id="tv-code-1" autocomplete="off" />
+                            <input type="text" class="tv-code-digit" maxlength="1" inputmode="text" id="tv-code-2" autocomplete="off" />
+                            <input type="text" class="tv-code-digit" maxlength="1" inputmode="text" id="tv-code-3" autocomplete="off" />
+                            <input type="text" class="tv-code-digit" maxlength="1" inputmode="text" id="tv-code-4" autocomplete="off" />
+                            <input type="text" class="tv-code-digit" maxlength="1" inputmode="text" id="tv-code-5" autocomplete="off" />
+                        </div>
+                        <button class="tv-code-submit" id="tv-code-submit" type="button" disabled>
+                            <span id="tv-code-submit-text">Отправить</span>
+                        </button>
+                        <div class="tv-qr-status" id="tv-code-status"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tv-qr-modal-footer">
+                <button class="tv-qr-modal-cancel" id="tv-qr-modal-cancel" type="button">
+                    Отмена
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.BASE_PATH = '{{BASE_PATH}}';
+    </script>
+    <script src="{{BASE_PATH}}static/js/core/image-loader.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/core/constants.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/core/api.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/core/telegram.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/themes.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/language.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/platform.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/subscription.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/notifications.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/haptic.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/marquee.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/qr-scanner.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/features/holidays.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/platform-selector.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/app-selector.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/installation-steps.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/clipboard.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/share.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/vless-selector.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/ui/qr-toggle.js?v={{VERSION}}"></script>
+    <script src="{{BASE_PATH}}static/js/main.js?v={{VERSION}}"></script>
+</body>
+</html>

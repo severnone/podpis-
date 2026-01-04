@@ -1,0 +1,83 @@
+.share-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.share-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    min-width: 200px;
+}
+
+.share-dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.share-dropdown-option {
+    padding: 12px 40px 12px 40px;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.share-dropdown-option:hover {
+    background: var(--bg-card-hover);
+    color: var(--accent-primary);
+}
+
+.share-dropdown-option:first-child {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.share-dropdown-option:last-child {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.share-dropdown-option i {
+    position: absolute;
+    left: 14px;
+    font-size: 16px;
+    color: currentColor;
+}
+
+.share-dropdown-option-text {
+    margin-left: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+    .share-dropdown-menu {
+        min-width: 180px;
+    }
+
+    .share-dropdown-option {
+        font-size: 13px;
+        padding: 10px 36px 10px 36px;
+    }
+
+    .share-dropdown-option i {
+        font-size: 14px;
+    }
+}
