@@ -11,7 +11,9 @@ const HOLIDAY_GREETING_SHOWN_KEY = 'holiday_greeting_shown';
  * Инициализирует праздничные темы
  */
 function initHolidays(settings) {
+    // Если праздники отключены на сервере — очищаем все данные
     if (!settings || !settings.holidays || !settings.holidays.enabled) {
+        clearHolidayData();
         return;
     }
     
@@ -455,8 +457,34 @@ function resetHolidayDisabled() {
     localStorage.removeItem(HOLIDAY_DISABLED_KEY);
 }
 
+/**
+ * Полная очистка данных праздников (когда отключены на сервере)
+ */
+function clearHolidayData() {
+    // Очищаем localStorage
+    localStorage.removeItem(HOLIDAY_DISABLED_KEY);
+    localStorage.removeItem(HOLIDAY_GREETING_SHOWN_KEY);
+    
+    // Удаляем все праздничные классы с body
+    document.body.className = document.body.className.replace(/holiday-\S+/g, '');
+    
+    // Удаляем все праздничные элементы если есть
+    var effects = document.getElementById('holiday-effects');
+    if (effects && effects.parentNode) effects.parentNode.removeChild(effects);
+    
+    var greeting = document.getElementById('holiday-greeting');
+    if (greeting && greeting.parentNode) greeting.parentNode.removeChild(greeting);
+    
+    var badge = document.querySelector('.holiday-logo-badge');
+    if (badge && badge.parentNode) badge.parentNode.removeChild(badge);
+    
+    var btn = document.querySelector('.holiday-disable-btn');
+    if (btn && btn.parentNode) btn.parentNode.removeChild(btn);
+}
+
 // Экспорт
 window.initHolidays = initHolidays;
 window.closeHolidayGreeting = closeHolidayGreeting;
 window.disableHoliday = disableHoliday;
 window.resetHolidayDisabled = resetHolidayDisabled;
+window.clearHolidayData = clearHolidayData;

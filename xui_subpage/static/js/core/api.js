@@ -93,7 +93,8 @@ async function apiDelete(endpoint, options = {}) {
 }
 
 async function getSettings() {
-    return await apiGet('api/settings');
+    // Добавляем timestamp чтобы избежать кеширования
+    return await apiGet('api/settings', { _t: Date.now() });
 }
 
 async function getSubscription(keyName) {
@@ -101,7 +102,7 @@ async function getSubscription(keyName) {
         throw new Error('key_name is required');
     }
 
-    return await apiGet('api/sub', { key_name: keyName });
+    return await apiGet('api/sub', { key_name: keyName, _t: Date.now() });
 }
 
 async function getCountryLinks(keyName) {
