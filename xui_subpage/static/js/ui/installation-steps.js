@@ -118,11 +118,6 @@ function updateInstallationSteps(app) {
         fragment.appendChild(tempDiv.firstChild);
     }
     stepsContainer.appendChild(fragment);
-    
-    // Запускаем анимацию шагов
-    if (window.animateSteps) {
-        window.animateSteps();
-    }
 }
 
 window.updateInstallationSteps = updateInstallationSteps;

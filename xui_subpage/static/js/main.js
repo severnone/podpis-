@@ -56,11 +56,6 @@ async function loadAppSettings() {
       window.initHolidays(appSettings);
     }
 
-    // Инициализируем анимации появления
-    if (window.initAnimations) {
-      window.initAnimations();
-    }
-
   } catch (err) {
     window.setCurrentLanguage(window.detectUserLanguage());
     await window.loadAppTexts(window.getCurrentLanguage());
@@ -142,17 +137,8 @@ async function loadSubscriptionData() {
       platformSelect.value = detectedOS;
     }
 
-    // Скрываем скелетон и показываем контент
-    if (window.hideSkeleton) {
-      window.hideSkeleton();
-    }
-
   } catch (error) {
     console.error('Subscription error:', error);
-    // Всё равно скрываем скелетон при ошибке
-    if (window.hideSkeleton) {
-      window.hideSkeleton();
-    }
     throw error;
   }
 }
