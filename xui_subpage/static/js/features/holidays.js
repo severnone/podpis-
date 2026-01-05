@@ -11,27 +11,34 @@ const HOLIDAY_GREETING_SHOWN_KEY = 'holiday_greeting_shown';
  * Инициализирует праздничные темы
  */
 function initHolidays(settings) {
-    console.log('[Holidays] Init called, settings:', settings);
+    // DEBUG: Показываем информацию
+    var debugInfo = [];
+    debugInfo.push('Settings: ' + (settings ? 'OK' : 'NULL'));
+    debugInfo.push('Holidays obj: ' + (settings && settings.holidays ? 'OK' : 'NULL'));
+    debugInfo.push('Enabled: ' + (settings && settings.holidays ? settings.holidays.enabled : 'N/A'));
     
     // Если праздники отключены на сервере — очищаем все данные
     if (!settings || !settings.holidays || !settings.holidays.enabled) {
-        console.log('[Holidays] Disabled or no settings');
+        debugInfo.push('Result: DISABLED');
+        alert('DEBUG HOLIDAYS:\n' + debugInfo.join('\n'));
         clearHolidayData();
         return;
     }
     
     holidayConfig = settings.holidays;
-    console.log('[Holidays] Config loaded:', holidayConfig);
     
     // Проверяем, отключил ли пользователь праздники
     if (isHolidayDisabledByUser()) {
-        console.log('[Holidays] Disabled by user');
+        debugInfo.push('Result: USER DISABLED');
+        alert('DEBUG HOLIDAYS:\n' + debugInfo.join('\n'));
         return;
     }
     
     // Определяем текущий праздник
     currentHoliday = detectCurrentHoliday();
-    console.log('[Holidays] Current holiday:', currentHoliday);
+    debugInfo.push('Holiday: ' + (currentHoliday ? currentHoliday.key : 'NONE'));
+    
+    alert('DEBUG HOLIDAYS:\n' + debugInfo.join('\n'));
     
     if (currentHoliday) {
         applyHolidayTheme(currentHoliday);
@@ -41,8 +48,6 @@ function initHolidays(settings) {
         if (holidayConfig.user_can_disable) {
             createDisableButton();
         }
-    } else {
-        console.log('[Holidays] No holiday detected for current date');
     }
 }
 
