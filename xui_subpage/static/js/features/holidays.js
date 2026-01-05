@@ -2,6 +2,8 @@
 // 🎄 ПРАЗДНИЧНЫЕ ТЕМЫ
 // ========================================
 
+alert('HOLIDAYS.JS LOADED!');
+
 let holidayConfig = null;
 let currentHoliday = null;
 const HOLIDAY_DISABLED_KEY = 'holiday_disabled';
