@@ -363,7 +363,7 @@ def create_api_routes(app, module_path):
 
     @app.get(f"{BASE_PATH}api/settings")
     async def get_settings():
-        return JSONResponse(content={
+        response = JSONResponse(content={
                 "project_name": PROJECT_NAME,
                 "bot_username": USERNAME_BOT,
                 "support_chat": SUPPORT_CHAT_URL,
@@ -390,6 +390,11 @@ def create_api_routes(app, module_path):
                     "easter_config": EASTER_CONFIG
                 }
             })
+        # Запрещаем кеширование
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
 
     @app.get(f"{BASE_PATH}health")
     async def health_check():
